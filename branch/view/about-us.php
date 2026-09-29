@@ -39,7 +39,7 @@ if($isOurApproach){
         </div>
     </div>
 
-    <!-- LIFESPAN MODEL SECTION (Matches https://sunriselearning.in/about-us/) -->
+    <!-- LIFESPAN MODEL SECTION  -->
     <div class="lifespan-model-card">
         <div class="lifespan-header">
             <span class="lifespan-badge">Continuum of Care</span>
