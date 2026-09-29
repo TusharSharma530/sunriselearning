@@ -320,10 +320,6 @@ echo $menu;
         <img src="<?=$path;?>branch/images/icons/quick-access.svg" alt="Quick Access">
     </a>
     <a href="javascript:" class="sidelink">
-        <span>Notice</span>
-        <img src="<?=$path;?>branch/images/icons/notice.svg" alt="Notice">
-    </a>
-    <a href="javascript:" class="sidelink">
         <span>+91-8585928038</span>
         <img src="<?=$path;?>branch/images/icons/support.svg" alt="Support">
     </a>
