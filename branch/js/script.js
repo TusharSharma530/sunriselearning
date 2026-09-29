@@ -32,6 +32,26 @@ $('.widget-news-row').slick({
 });
 
 
+//awards & latest achievement slider
+$('.awards-slider, .achievements-slider').slick({
+    infinite: false,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+    dots: false,
+    autoplay: false,
+    responsive: [ { breakpoint: 992, settings:
+        { slidesToShow: 3 }
+    },
+    { breakpoint: 768, settings:
+        { slidesToShow: 2 }
+    },
+    { breakpoint: 576, settings:
+        { slidesToShow: 1 }
+    } ]
+});
+
+
 //recuiters slider
 // $('.recruiters').slick({
 //     infinite: true,

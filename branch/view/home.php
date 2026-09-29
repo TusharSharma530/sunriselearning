@@ -460,16 +460,19 @@ if(file_exists("branch/view/$gettype.php") && empty($geturl)){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/thumbnail/lg-thumbnail.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/zoom/lg-zoom.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+<script src="<?=$path;?>branch/js/script.js"></script>
 <script>
     var lightGalleryElement = document.getElementById('lightgallery');
     if(lightGalleryElement){
         lightGallery(lightGalleryElement);
     }
+    document.querySelectorAll('.lg-gallery').forEach(function(el){
+        lightGallery(el, { selector: '.lgslide-item' });
+    });
 </script>
-
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
-<script src="<?=$path;?>branch/js/script.js"></script>
 <?php if(!empty($gettype)){ ?>
 <script>
     $('#submitForm').ajaxForm({
