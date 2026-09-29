@@ -31,10 +31,10 @@ if(isset($_POST['editRecord'])){
 	if(!empty($subcat_id)){
 		$rwcat2 = mysqli_fetch_assoc(mysqli_query($con, "SELECT c_url FROM category WHERE id=$cat_id"));
 		$rwsubcat2 = mysqli_fetch_assoc(mysqli_query($con, "SELECT sc_url FROM sub_cat WHERE id=$subcat_id"));
-		$redirect_url = $path.$rwcat2['c_url'].'/'.$rwsubcat2['sc_url'];
+		$redirect_url = $rwcat2['c_url'].'/'.$rwsubcat2['sc_url'];
 	}else if(!empty($cat_id)){
 		$rwcat2 = mysqli_fetch_assoc(mysqli_query($con, "SELECT c_url FROM category WHERE id=$cat_id"));
-		$redirect_url = $path.$rwcat2['c_url'];
+		$redirect_url = $rwcat2['c_url'];
 	}
 	
 	$sqlcheck = mysqli_query($con,"UPDATE creativity SET `title` = '$title', `url` = '$url', `file` = '$uploadpath', `link` = '$link', `redirect_url` = '$redirect_url', `order` = '$order' WHERE id = $crupid");

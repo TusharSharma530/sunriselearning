@@ -22,10 +22,10 @@ if(isset($_POST['addRecord'])){
 	if(!empty($subcat_id)){
 		$rwcat = mysqli_fetch_assoc(mysqli_query($con, "SELECT c_url FROM category WHERE id=$cat_id"));
 		$rwsubcat = mysqli_fetch_assoc(mysqli_query($con, "SELECT sc_url FROM sub_cat WHERE id=$subcat_id"));
-		$redirect_url = $path.$rwcat['c_url'].'/'.$rwsubcat['sc_url'];
+		$redirect_url = $rwcat['c_url'].'/'.$rwsubcat['sc_url'];
 	}else if(!empty($cat_id)){
 		$rwcat = mysqli_fetch_assoc(mysqli_query($con, "SELECT c_url FROM category WHERE id=$cat_id"));
-		$redirect_url = $path.$rwcat['c_url'];
+		$redirect_url = $rwcat['c_url'];
 	}
 
 	$sqlcheck = mysqli_query($con,"SELECT * FROM creativity WHERE title = '$title'");

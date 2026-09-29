@@ -167,6 +167,24 @@ $smartclassroomdesc = $rwlinks['smart_classroom_desc'] ?? '';
 
 
 
+
+function __relativeUrl($url){
+	$url = trim((string)$url);
+	if($url === '') return '';
+	// scheme + host hatao (http://abc.com/ ya //abc.com/)
+	if(preg_match('#^(https?:)?//[^/]+/#i', $url)){
+		$url = preg_replace('#^(https?:)?//[^/]+/#i', '', $url);
+	}
+	
+	$basefull = (strpos(BASE_PATH, '//') === 0) ? 'http:'.BASE_PATH : BASE_PATH;
+	$basePath = trim((string)parse_url($basefull, PHP_URL_PATH), '/');
+	if($basePath !== '' && stripos($url, $basePath.'/') === 0){
+		$url = substr($url, strlen($basePath) + 1);
+	}
+	return ltrim($url, '/');
+}
+
+
 // ===== get state name ====== 
 function __getStateName($con, $id){
     $sql = mysqli_query($con, "SELECT * FROM `state` WHERE `id` = $id");

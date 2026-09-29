@@ -162,7 +162,8 @@ $hasCreativity = true;
             <?php
             while($rwcreativity=mysqli_fetch_array($sqlcreativity)){
                 $crimg = !empty($rwcreativity['file']) ? $rwcreativity['file'] : 'images/logo.jpg';
-                $crlink = !empty($rwcreativity['redirect_url']) ? $rwcreativity['redirect_url'] : (!empty($rwcreativity['link']) ? $rwcreativity['link'] : 'javascript:');
+                $crredirect = __relativeUrl($rwcreativity['redirect_url']);
+                $crlink = !empty($crredirect) ? $path.$crredirect : (!empty($rwcreativity['link']) ? $rwcreativity['link'] : 'javascript:');
             ?>
             <div class="creativity-slide-item">
                 <div class="creativitycard">
