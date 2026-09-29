@@ -1,0 +1,4 @@
+User-agent: *
+Allow: 
+Allow: /cgi-bin/
+Sitemap: https://kgimeerut.com/sitemap.xml

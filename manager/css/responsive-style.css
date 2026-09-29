@@ -1,0 +1,119 @@
+
+/*============= Media Query max-width 992px ================*/
+@media(max-width: 992px){
+	
+}
+
+/*============= Media Query max-width 768px ================*/
+@media(max-width: 768px){
+	aside{
+		position: absolute;
+		top: 0;
+		left: -100%;		
+		z-index: 999;
+		background: #fff;
+
+	}
+	aside.left0{
+		transition: all .4s linear;
+		left: 0;
+	}
+	aside.active + section.main-dashboard{
+		width: 100%;
+	}
+	section.main-dashboard{
+		width: 100%;
+	}
+	section.main-dashboard .main-section .dashboard-content .product-label{
+        width: 100%;
+    }
+
+    .wrapper{background-size: 100%;display: flex;align-items: center;justify-content: center;}
+	.wrapper .wrapper-right{
+    width: 70%;
+    margin: auto;
+    background: #fff;
+    height: auto;
+    border-radius: 10px;
+    padding: 20px 10px;
+    backdrop-filter: blur(5px);
+}
+	.wrapper .wrapper-right .logo{}
+	.wrapper .wrapper-right .logo img{}
+	.wrapper .wrapper-right .admin-form{}
+	.wrapper .wrapper-right .admin-form form{}
+	.wrapper .wrapper-right .admin-form form small{}
+	.wrapper .wrapper-right .admin-form form .input-group{}
+	.wrapper .wrapper-right .admin-form form .input-group span{}
+	.wrapper .wrapper-right .admin-form form .input-group input{}
+	.wrapper .wrapper-right .admin-form form .input-group input:focus{}
+	.wrapper .wrapper-right .admin-form form input[type='submit']{}
+
+
+
+
+
+}
+
+/*============= Media Query max-width 576px ================*/
+@media(max-width: 576px){
+    .discount-form form div.mb-3,
+    .featuredproduct-form form div.mb-3,
+    .banner-form form div.mb-3{
+        width: 100%;
+    }
+    .featuredproduct-form form div.mb-3{
+        width:100%;
+    }
+    .wrapper{background-size: cover;}
+	.wrapper .wrapper-right{
+    width: 80%;
+}
+	.wrapper .wrapper-right .logo{}
+	.wrapper .wrapper-right .logo img{}
+	.wrapper .wrapper-right .admin-form{
+    width: 80%;
+}
+	.wrapper .wrapper-right .admin-form form{}
+	.wrapper .wrapper-right .admin-form form small{}
+	.wrapper .wrapper-right .admin-form form .input-group{}
+	.wrapper .wrapper-right .admin-form form .input-group span{}
+	.wrapper .wrapper-right .admin-form form .input-group input{}
+	.wrapper .wrapper-right .admin-form form .input-group input:focus{}
+	.wrapper .wrapper-right .admin-form form input[type='submit']{}
+
+
+}
+
+/*============= Media Query max-width 360px ================*/
+@media(max-width: 360px){
+    section.main-dashboard .main-dashboard-section{
+        padding:0;
+    }
+    form input[type='submit']{
+        width: 100%;
+    }
+    .wrapper{}
+	.wrapper .wrapper-right{
+    width: 95%;
+}
+	.wrapper .wrapper-right .logo{
+    text-align: center;
+}
+	.wrapper .wrapper-right .logo img{
+    width: 50%;
+    margin: auto;
+}
+	.wrapper .wrapper-right .admin-form{
+    width: 90%;
+}
+	.wrapper .wrapper-right .admin-form form{}
+	.wrapper .wrapper-right .admin-form form small{}
+	.wrapper .wrapper-right .admin-form form .input-group{}
+	.wrapper .wrapper-right .admin-form form .input-group span{}
+	.wrapper .wrapper-right .admin-form form .input-group input{}
+	.wrapper .wrapper-right .admin-form form .input-group input:focus{}
+	.wrapper .wrapper-right .admin-form form input[type='submit']{}
+    
+}
+
