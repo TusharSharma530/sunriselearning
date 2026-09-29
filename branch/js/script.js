@@ -33,7 +33,7 @@ $('.widget-news-row').slick({
 
 
 //awards & latest achievement slider
-$('.awards-slider, .achievements-slider').slick({
+$('.awards-slider, .achievements-slider, .onlinecourses-slider').slick({
     infinite: false,
     slidesToShow: 4,
     slidesToScroll: 1,

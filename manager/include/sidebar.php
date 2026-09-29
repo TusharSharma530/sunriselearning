@@ -84,6 +84,9 @@
 <a href="courses.php" class="submenu-link">Courses</a>
 </li>
 <li class="submenu-item">
+<a href="onlinecourses.php" class="submenu-link">Online Course</a>
+</li>
+<li class="submenu-item">
 <a href="news-events.php" class="submenu-link">News & Events</a>
 </li>
 <li class="submenu-item">
