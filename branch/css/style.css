@@ -9,17 +9,22 @@
 html{
     scroll-behavior: smooth;
     overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--secondary-color);
 }
 body{
     background: #fff;
     overflow-x: hidden;
 }
+html::-webkit-scrollbar,
 body::-webkit-scrollbar{
     background-color: var(--secondary-color);
-    width: 0px;
+    width: 12px;
 }
+html::-webkit-scrollbar-thumb,
 body::-webkit-scrollbar-thumb{
     background-color: var(--primary-color);
+    border-radius: 6px;
 }
 
 :root{
@@ -28,7 +33,7 @@ body::-webkit-scrollbar-thumb{
     --third-font: "Libre Baskerville", serif;
     --fourth-font: "Oleo Script Swash Caps", system-ui;
     --primary-color: #1a3a5c;
-    --secondary-color: #252525;
+    /* --secondary-color: #252525; */
     --txt-color: #2c2c2c;
 }
 /* ============== global css start here =================== */
