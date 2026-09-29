@@ -34,15 +34,16 @@ if($geturl=='b-sc-agriculture-in-meerut'){
 }
 
 
-if($gettype=='admission'){
-    if(empty($geturl)){
-        include("controller/__admission.php");
-        include("branch/view/admission.php");
-    }else{
-        echo "<script>window.location.href='{$path}admission'</script>";
-    }
-    exit();
-}
+// Admission - normal category page (same as other menus)
+// if($gettype=='admission'){
+//     if(empty($geturl)){
+//         include("controller/__admission.php");
+//         include("branch/view/admission.php");
+//     }else{
+//         echo "<script>window.location.href='{$path}admission'</script>";
+//     }
+//     exit();
+// }
 
 if($gettype=='complains-suggestions'){
     if(empty($geturl)){
@@ -137,7 +138,7 @@ if(file_exists("controller/__$gettype.php")){
 <meta name="author" content="<?=$websitename;?>">
 <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
 <link rel="canonical" href="<?=$actual_link;?>">
-<link rel="icon" type="image/x-icon" href="<?=$path;?>branch/images/logo/favicon.ico">
+<link rel="icon" type="image/jpeg" href="<?=$path;?>branch/assets/logo/logoImg1787999510.jpg?v=2">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <!-- ========== Light Gallery CDN Link ========= -->
 <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery.min.css"/>-->
@@ -196,15 +197,14 @@ while($rwtopmenu = mysqli_fetch_array($sqltopmenu)){ ?>
 
 
 <div class="centerheader">
-<div class="container-fluid">
+<div class="container-lg">
 <div class="row">
-    <div class="col-lg-5 col-md-6 col-10">
+    <div class="col-lg-4 col-md-6 col-10">
         <div class="weblogo">
-            <a href="<?=$path;?>" class="centerheaderlogo"><img src="<?=$path.$logo;?>" alt="<?=$websitename;?>"></a>        
-            <a href="https://kim.kgimeerut.com/messages/group-advisor" class="bi bi-c-circle symbolcopy" target="_blank"></a>
+            <a href="<?=$path;?>" class="centerheaderlogo"><img src="<?=$path.$logo;?>" alt="<?=$websitename;?>"></a>
         </div>
     </div>
-    <div class="col-lg-7 col-md-6  col-2 gridbox">
+    <div class="col-lg-8 col-md-6  col-2 text-end">
         <div class="socialmedia">
             <?php if(!empty($facebook)){ ?>          
             <a href="<?=$facebook;?>" class="sociallinks ri-facebook-line" target="_blank"></a>
@@ -227,8 +227,8 @@ while($rwtopmenu = mysqli_fetch_array($sqltopmenu)){ ?>
         </div>
         <ul class="centerheader-menu">
             <li class="menu-list"><a href="<?=$path;?>admission" class="menu-anchor">Online Registration 2026-27</a></li>
-            <li class="menu-list"><a href="<?=$path;?>branch/images/brochure.pdf" class="menu-anchor" target="_blank">Broucher</a></li>
-            <li class="menu-list"><a href="<?=$path;?>1st-smart-classroom" class="smartclassroom"><img src="<?=$path;?>branch/images/star.png"> 1st Smart Classroom</a></li>
+            <?php $broucherurl = !empty($brochurefile) ? $path.$brochurefile : $path.'branch/images/brochure.pdf'; ?>
+            <li class="menu-list"><a href="<?=$broucherurl;?>" class="menu-anchor" target="_blank">Broucher</a></li>
         </ul>
         <div class="mobmenutoggle">
             <a href="javascript:" class="bi bi-list"></a>
@@ -315,20 +315,16 @@ echo $menu;
 <!--<a href="<?=$path;?>admission" class="admissionopen">Online Registration 2024-25</a>-->
 
 <div class="sidemenu">
-    <a href="<?=$path;?>notice" class="sidelink">
+    <a href="javascript:" class="sidelink">
         <span>Notice</span>
         <img src="<?=$path;?>branch/images/icons/notice.svg" alt="Notice">
     </a>
-    <a href="<?=$path;?>quick-access" class="sidelink">
-        <span>Quick Access</span>
-        <img src="<?=$path;?>branch/images/icons/quick-access.svg" alt="Quick Access">
-    </a>
     <a href="javascript:" class="sidelink">
-        <span>+91-9557777501</span>
+        <span>+91-8585928038</span>
         <img src="<?=$path;?>branch/images/icons/support.svg" alt="Support">
     </a>
     <a href="javascript:" class="sidelink">
-        <span>+91-9557777501</span>
+        <span>+91-8585928038</span>
         <img src="<?=$path;?>branch/images/icons/phone.svg" alt="Phone">
     </a>
 </div>  
@@ -337,6 +333,16 @@ echo $menu;
 include("branch/view/default.php");
 }else{
 include("branch/view/breadcrumb.php");
+
+if($gettype == 'sl-blog' && !empty($geturl)){
+    $sqlblogdetail = mysqli_query($con, "SELECT * FROM `blogs` WHERE `url` = '$geturl' AND `status` = 1");
+    if(mysqli_num_rows($sqlblogdetail)){
+        $rwblogdetail = mysqli_fetch_assoc($sqlblogdetail);
+    }
+    include("branch/view/blog-detail.php");
+    exit();
+}
+
 if(file_exists("branch/view/$gettype.php") && empty($geturl)){
     include("branch/view/$gettype.php");
 }else if(file_exists("branch/view/$geturl.php")){
@@ -430,7 +436,7 @@ if(file_exists("branch/view/$gettype.php") && empty($geturl)){
 </div>        
 <?php
         }else{
-            echo $data;
+            echo '<div class="pagewidget"><div class="container-lg"><div class="row"><div class="col-md-12"><div class="pagedesc">'.$data.'</div></div></div></div></div>';
         }
     }
 } 
@@ -447,7 +453,10 @@ if(file_exists("branch/view/$gettype.php") && empty($geturl)){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/thumbnail/lg-thumbnail.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/zoom/lg-zoom.min.js"></script>
 <script>
-    lightGallery(document.getElementById('lightgallery'));
+    var lightGalleryElement = document.getElementById('lightgallery');
+    if(lightGalleryElement){
+        lightGallery(lightGalleryElement);
+    }
 </script>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -470,6 +479,18 @@ if(file_exists("branch/view/$gettype.php") && empty($geturl)){
 });
 </script>
 <?php } ?>
+<script>
+function toggleOrder3Desc(){
+    var el = document.getElementById('order3Desc');
+    var btn = el.nextElementSibling;
+    el.classList.toggle('expanded');
+    if(el.classList.contains('expanded')){
+        btn.innerHTML = 'Read Less <i class="bi bi-chevron-up"></i>';
+    } else {
+        btn.innerHTML = 'Read More <i class="bi bi-chevron-down"></i>';
+    }
+}
+</script>
 </body>
 </html>
 
