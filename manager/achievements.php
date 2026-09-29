@@ -57,7 +57,6 @@
 				<tr>
 					<th>#</th>									
 					<th>Title</th>									
-					<th>Image</th>
 					<th>YouTube</th>
 					<th>Order</th>
 					<th>Status</th>
@@ -76,13 +75,6 @@
 				<tr id='remove<?php echo $awid; ?>'>
 					<td><?php echo $serial; ?></td>									
 					<td><?=$rwaw['title'];?></td>
-					<td>
-						<?php if(!empty($rwaw['file'])){ ?>
-						<img src="<?=$path.$rwaw['file'];?>" alt="Image" style="width:60px;height:40px;object-fit:cover;border-radius:5px;">
-						<?php } else { ?>
-						<span class="text-muted">No Image</span>
-						<?php } ?>
-					</td>
 					<td>
 						<?php if(!empty($rwaw['youtube_url'])){ ?>
 						<iframe width="80" height="50" src="https://www.youtube.com/embed/<?=$rwaw['youtube_url'];?>" frameborder="0" allowfullscreen></iframe>

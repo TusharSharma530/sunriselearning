@@ -315,6 +315,10 @@ echo $menu;
 <!--<a href="<?=$path;?>admission" class="admissionopen">Online Registration 2024-25</a>-->
 
 <div class="sidemenu">
+    <a href="<?=$path;?>quick-access" class="sidelink">
+        <span>Quick Access</span>
+        <img src="<?=$path;?>branch/images/icons/quick-access.svg" alt="Quick Access">
+    </a>
     <a href="javascript:" class="sidelink">
         <span>Notice</span>
         <img src="<?=$path;?>branch/images/icons/notice.svg" alt="Notice">
@@ -326,6 +330,10 @@ echo $menu;
     <a href="javascript:" class="sidelink">
         <span>+91-8585928038</span>
         <img src="<?=$path;?>branch/images/icons/phone.svg" alt="Phone">
+    </a>
+    <a href="mailto:admission@schoollearning.com" class="sidelink">
+        <span>admission@schoollearning.com</span>
+        <img src="<?=$path;?>branch/images/icons/email.svg" alt="Email" class="email-icon">
     </a>
 </div>  
      

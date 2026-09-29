@@ -16,14 +16,8 @@ if(isset($_POST['editRecord'])){
 	$description = trim(mysqli_real_escape_string($con,$_POST['description']));
 	$youtube_url = trim(mysqli_real_escape_string($con,$_POST['youtube_url']));
 	$order = trim(mysqli_real_escape_string($con,$_POST['order']));
-	
-	 if(empty($_FILES['img']['name'])){
-		$image = $rwaw['file'];
-		$uploadpath = $image;
-	}else{
-		$uploadpath = createImgWebp("img", "achievements");
-	}
-	
+	$uploadpath = $rwaw['file'];
+
 	$sqlcheck = mysqli_query($con,"UPDATE achievements SET `title` = '$title', `description` = '$description', `file` = '$uploadpath', `youtube_url` = '$youtube_url', `order` = '$order' WHERE id = $awid");
 		
 	if($sqlcheck){
@@ -78,14 +72,6 @@ include 'include/sidebar.php';
 			<div class="mb-3 col-md-2">
 				<label for="order" class="form-label">Order</label>
 				<input type="text" class="form-control" name="order" value="<?php echo $rwaw['order']; ?>">
-			</div>
-
-			<div class="mb-3 col-md-12">
-			  	<label for="formFile" class="form-label">Image</label>
-				<input type="file" class="form-control" name="img" accept="image/*">
-				<?php if(!empty($rwaw['file'])){ ?>
-				<img src="<?=$path.$rwaw['file'];?>" style="width:100px;margin-top:10px;">
-				<?php } ?>
 			</div>
 
 			<div class="col-md-12">

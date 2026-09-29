@@ -12,10 +12,6 @@ if(isset($_POST['addRecord'])){
 	$order = trim(mysqli_real_escape_string($con,$_POST['order']));
 	$uploadpath = "";
 
-	if(isset($_FILES['img']['name'])){
-		$uploadpath = createImgWebp("img", "achievements");
-	}
-
 	$sqlins = mysqli_query($con,"INSERT INTO achievements (id, title, description, file, youtube_url, `order`, status) VALUES (NULL, '$title', '$description', '$uploadpath', '$youtube_url', '$order', 1)");
 		
 	if($sqlins){
@@ -76,11 +72,6 @@ include 'include/sidebar.php';
 			<input type="text" class="form-control" name="order" required>
 		</div>
 
-		<div class="mb-3 col-md-12">
-		  	<label for="formFile" class="form-label">Image</label>
-			<input type="file" class="form-control" name="img" accept="image/*">
-		</div>
-		
 		<div class="mt-2 mx-auto">
 			<input type="submit" value="Add Record" name="addRecord" class="submitInput">
 		</div>
@@ -97,7 +88,6 @@ include 'include/sidebar.php';
 			<thead>
 				<tr>
 					<th width="5%">#</th>
-					<th>Image</th>
 					<th>Title</th>
 					<th>YouTube</th>
 					<th>Order</th>
@@ -114,13 +104,6 @@ $id = $rwaw['id'];
 ?>
 				<tr id='remove<?php echo $id; ?>'>
 					<td><?php echo $serial; ?></td>
-					<td>
-						<?php if(!empty($rwaw['file'])){ ?>
-						<img src="<?=$path.$rwaw['file'];?>" style="width:100px;"/>
-						<?php } else { ?>
-						<span class="text-muted">No Image</span>
-						<?php } ?>
-					</td>
 					<td><?=$rwaw['title'];?></td>
 					<td>
 						<?php if(!empty($rwaw['youtube_url'])){ ?>

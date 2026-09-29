@@ -101,7 +101,7 @@ function extractYoutubeId($url){
     return $url;
 }
 
-$achievementsq = mysqli_query($con, "SELECT * FROM `achievements` WHERE `status`=1 ORDER BY `order` ASC");
+$achievementsq = mysqli_query($con, "SELECT `id`, `title`, `description`, `youtube_url`, `order` FROM `achievements` WHERE `status`=1 ORDER BY `order` ASC");
 if(mysqli_num_rows($achievementsq)){
 ?>
 <div class="about-page-section bg-white" id="achievements">
@@ -121,10 +121,6 @@ if(mysqli_num_rows($achievementsq)){
                 <?php if($hasVideo && $videoId){ ?>
                 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
                     <iframe src="https://www.youtube.com/embed/<?=$videoId;?>" title="<?=$rwach['title'];?>" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <?php } else if(!empty($rwach['file'])){ ?>
-                <div style="overflow:hidden;">
-                    <img src="<?=$path.$rwach['file'];?>" alt="<?=$rwach['title'];?>" style="width:100%;height:auto;display:block;">
                 </div>
                 <?php } ?>
                 <?php if(!empty($rwach['title']) || !empty($rwach['description'])){ ?>
