@@ -68,8 +68,16 @@
 	</div>
 </div>
 <div class="copyright">
-	<p>&copy; 2024 | <?=$websitename;?> | All Rights Reserved</p>
+    <p>
+        &copy; 2024 |
+        <?=$websitename;?> |
+        Managed by
+        <a href="https://promotionparadise.in/" target="_blank" rel="noopener noreferrer">
+            Promotion Paradise
+        </a>
+    </p>
 </div>
+
 </footer>
     <!--
     <div class="jobbtn">
