@@ -3875,7 +3875,7 @@ footer .footercol .socialmedia .ri-youtube-fill{background: #ff0000;}
 
 /*======= iqac cell =======*/
 .iqac-cotainer{
-    padding: 40px 0;
+    /* padding: 40px 0; */
 }
 .iqac-cotainer .iqac-content{
     display: flow-root;
