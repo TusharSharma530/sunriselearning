@@ -23,8 +23,8 @@
 			<div class="footerbox">
 				<h4 class="footercoltitle" style="color:#b388d9;font-weight:700;text-transform:uppercase;">Program</h4>
 				<ul style="list-style:none;padding:0;">
-					<li style="margin-bottom:10px;"><a href="<?=$path;?>students" style="color:#ddd;text-decoration:none;font-size:15px;">Student Program</a></li>
-					<li style="margin-bottom:10px;"><a href="<?=$path;?>about-us/parent-program" style="color:#ddd;text-decoration:none;font-size:15px;">Parent Program</a></li>
+					<li style="margin-bottom:10px;"><a href="<?=$path;?>latest-achievement" style="color:#ddd;text-decoration:none;font-size:15px;">Latest Achievements</a></li>
+					<li style="margin-bottom:10px;"><a href="<?=$path;?>parent-training" style="color:#ddd;text-decoration:none;font-size:15px;">Parent Training</a></li>
 					<li style="margin-bottom:10px;"><a href="<?=$path;?>admission" style="color:#ddd;text-decoration:none;font-size:15px;">Admissions</a></li>
 					<li style="margin-bottom:10px;"><a href="<?=$path;?>online-courses" style="color:#ddd;text-decoration:none;font-size:15px;">Online Courses</a></li>
 				</ul>
@@ -37,7 +37,7 @@
 				<ul style="list-style:none;padding:0;">
 					<li style="margin-bottom:10px;"><a href="<?=$path;?>about-us" style="color:#ddd;text-decoration:none;font-size:15px;">About Us</a></li>
 					<li style="margin-bottom:10px;"><a href="<?=$path;?>contact" style="color:#ddd;text-decoration:none;font-size:15px;">Contact</a></li>
-					<li style="margin-bottom:10px;"><a href="<?=$path;?>online-courses" style="color:#ddd;text-decoration:none;font-size:15px;">Online Courses</a></li>
+					<li style="margin-bottom:10px;"><a href="<?=$path;?>admission" style="color:#ddd;text-decoration:none;font-size:15px;">Admission</a></li>
 					<li style="margin-bottom:10px;"><a href="<?=$path;?>gallery" style="color:#ddd;text-decoration:none;font-size:15px;">Gallery</a></li>
 				</ul>
 			</div>
