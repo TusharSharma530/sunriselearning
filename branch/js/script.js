@@ -78,16 +78,19 @@ $('.awards-slider, .achievements-slider, .onlinecourses-slider').slick({
 //association slider
 $('.association-img').slick({
     infinite: true,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
-    arrows: true,
+    arrows: false,
     dots: false,
     autoplay: true,
+    autoplaySpeed: 2000,
+    speed: 800,
+    pauseOnHover: false,
     responsive: [ { breakpoint: 992, settings: 
-        { slidesToShow: 3 }
+        { slidesToShow: 4 }
     },
     { breakpoint: 768, settings: 
-        { slidesToShow: 2 }
+        { slidesToShow: 3 }
     },
     { breakpoint: 576, settings: 
         { slidesToShow: 2 }

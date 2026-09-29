@@ -785,7 +785,7 @@ header{
     margin: 0;
 }
 .association-img{
-    display: flex;
+    display: block;
     margin: auto;
     width: 80%;
 }
