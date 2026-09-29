@@ -8,7 +8,7 @@ $id = $_GET['id'] ?? "";
 
 if(isset($_POST['deletedata'])){
 	$id = $_POST['id'];
-	$sqldelImg = mysqli_query($con, "SELECT * FROM `achievements` WHERE id = $id");
+	$sqldelImg = mysqli_query($con, "SELECT * FROM `achievement_images` WHERE id = $id");
 		if(mysqli_num_rows($sqldelImg)){
 			$rowimg = mysqli_fetch_assoc($sqldelImg);
 				$imgid = $rowimg['file'];
@@ -16,7 +16,7 @@ if(isset($_POST['deletedata'])){
 					unlink("../".$imgid);
 				}
 
-			$sqldelete = mysqli_query($con,"DELETE FROM `achievements` WHERE id = $id");
+			$sqldelete = mysqli_query($con,"DELETE FROM `achievement_images` WHERE id = $id");
 			if($sqldelete){
 				echo 'true';
 			}else{
@@ -40,7 +40,7 @@ foreach ($_FILES['img']["name"] as $row=>$name){
     $uploadpath = "branch/assets/achievements/".$imagename;
     move_uploaded_file($_FILES["img"]["tmp_name"][$i], "../branch/assets/achievements/" . $imagename);
     $i++;
-    $sqlins = mysqli_query($con,"INSERT INTO `achievements` (`id`, `title`, `description`, `file`, `youtube_url`, `order`, `status`) VALUES (NULL, '', '', '$uploadpath', '', $i, 1)");
+    $sqlins = mysqli_query($con,"INSERT INTO `achievement_images` (`id`, `file`, `order`, `status`) VALUES (NULL, '$uploadpath', $i, 1)");
 }  
 
 if($sqlins){
@@ -116,7 +116,7 @@ include 'include/sidebar.php';
 				</tr>
 			</thead>
 			<tbody>
-<?php $sqlach = mysqli_query($con, "SELECT * FROM `achievements` ORDER BY `id` DESC");
+<?php $sqlach = mysqli_query($con, "SELECT * FROM `achievement_images` ORDER BY `id` DESC");
 if(mysqli_num_rows($sqlach)){
 $serial = 1;
 while($rwach = mysqli_fetch_assoc($sqlach)){
