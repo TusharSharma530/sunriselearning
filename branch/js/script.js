@@ -80,7 +80,7 @@ $('.association-img').slick({
     infinite: true,
     slidesToShow: 5,
     slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
     dots: false,
     autoplay: true,
     autoplaySpeed: 2000,
