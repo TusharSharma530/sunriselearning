@@ -331,8 +331,8 @@ echo $menu;
         <span>+91-8585928038</span>
         <img src="<?=$path;?>branch/images/icons/phone.svg" alt="Phone">
     </a>
-    <a href="mailto:admission@schoollearning.com" class="sidelink">
-        <span>admission@schoollearning.com</span>
+    <a href="mailto:contactus@sunriselearning.in" class="sidelink">
+        <span>contactus@sunriselearning.in</span>
         <img src="<?=$path;?>branch/images/icons/email.svg" alt="Email" class="email-icon">
     </a>
 </div>  
