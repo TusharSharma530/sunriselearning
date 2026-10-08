@@ -443,7 +443,39 @@ if(file_exists("branch/view/$gettype.php") && empty($geturl)){
             echo '<div class="pagewidget"><div class="container-lg"><div class="row"><div class="col-md-12"><div class="pagedesc">'.$data.'</div></div></div></div></div>';
         }
     }
-} 
+
+$showcatslider = isset($catid) && !(($gettype == 'gallery' || $gettype == 'photo-gallery') && empty($geturl));
+if($showcatslider){
+	if(isset($subid)){
+		$sqlcatslider = mysqli_query($con, "SELECT * FROM `media` WHERE `gal_id` = 1 AND `cat_id` = $catid AND `subcat_id` = $subid AND `status` = 1 ORDER BY `id` DESC");
+	}else{
+		$sqlcatslider = mysqli_query($con, "SELECT * FROM `media` WHERE `gal_id` = 1 AND `cat_id` = $catid AND `status` = 1 ORDER BY `id` DESC");
+	}
+	if($sqlcatslider && mysqli_num_rows($sqlcatslider)){
+		$slideralt = isset($subtitle) ? $subtitle : (isset($cattitle) ? $cattitle : 'Gallery');
+?>
+<div class="media-gallery-section">
+<div class="container-lg">
+	
+	<div class="lg-gallery">
+	<div class="media-gallery-slider">
+<?php while($rwcatimg = mysqli_fetch_assoc($sqlcatslider)){
+	if(empty($rwcatimg['file'])) continue;
+?>
+		<div class="media-gallery-item lgslide-item" data-src="<?=$path.$rwcatimg['file'];?>" data-sub-html="<?=htmlspecialchars($slideralt);?>">
+			<div class="media-gallery-card">
+				<img src="<?=$path.$rwcatimg['file'];?>" alt="<?=htmlspecialchars($slideralt);?>">
+			</div>
+		</div>
+<?php } ?>
+	</div>
+	</div>
+</div>
+</div>
+<?php
+	}
+}
+}
 ?>
 
 

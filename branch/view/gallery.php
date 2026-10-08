@@ -4,8 +4,15 @@
         <!-- <h2 style="font-size:32px;font-weight:700;color:#333;">Gallery</h2> -->
     </div>
     <?php
-    $sqlgallery = mysqli_query($con, "SELECT * FROM `media` ORDER BY `id` DESC");
-    if(mysqli_num_rows($sqlgallery)){
+  
+    $gallerycatid = 0;
+    $sqlgallerycat = mysqli_query($con, "SELECT `id` FROM `category` WHERE `c_url` = 'gallery' LIMIT 1");
+    if(mysqli_num_rows($sqlgallerycat)){
+        $rwgallerycat = mysqli_fetch_assoc($sqlgallerycat);
+        $gallerycatid = intval($rwgallerycat['id']);
+    }
+    $sqlgallery = $gallerycatid ? mysqli_query($con, "SELECT * FROM `media` WHERE `cat_id` = $gallerycatid ORDER BY `id` DESC") : false;
+    if($sqlgallery && mysqli_num_rows($sqlgallery)){
     ?>
     <div class="row" id="lightgallery">
         <?php while($rwgallery = mysqli_fetch_assoc($sqlgallery)){ ?>

@@ -349,28 +349,27 @@ $rwgold4=mysqli_fetch_array($sqlgold4);
         <span class="sec-badge">#Gallery</span>
         <h2 class="sec-main-title">Media & Activities</h2>
     </div>
+    <?php 
+
+    $gallerycatid = 0;
+    $sqlgallerycat = mysqli_query($con, "SELECT `id` FROM `category` WHERE `c_url` = 'gallery' LIMIT 1");
+    if(mysqli_num_rows($sqlgallerycat)){
+        $rwgallerycat = mysqli_fetch_assoc($sqlgallerycat);
+        $gallerycatid = intval($rwgallerycat['id']);
+    }
+    $sqlmedia = $gallerycatid ? mysqli_query($con, "SELECT * FROM `media` WHERE `cat_id` = $gallerycatid AND `status` = 1 ORDER BY `id` DESC LIMIT 48") : false;
+    if($sqlmedia && mysqli_num_rows($sqlmedia)){
+    ?>
     <div class="media-gallery-slider" id="lightgallery">
-        <?php 
-        $sqlmedia=mysqli_query($con,"SELECT * FROM `media` WHERE `gal_id`=0 OR `gal_id`=2 ORDER BY `id` DESC LIMIT 48");
-        while($rwmedia=mysqli_fetch_array($sqlmedia)){ 
-        ?>
+        <?php while($rwmedia=mysqli_fetch_array($sqlmedia)){ ?>
         <div class="media-gallery-item" data-src="<?=$path;?><?=$rwmedia['file'];?>">
             <div class="media-gallery-card">
                 <img src="<?=$path;?><?=$rwmedia['file'];?>" alt="Media Gallery">
             </div>
         </div>
         <?php } ?>
-        <?php 
-        $sqlact=mysqli_query($con,"SELECT * FROM `activities` ORDER BY `id` DESC LIMIT 48");
-        while($rwact=mysqli_fetch_array($sqlact)){ 
-        ?>
-        <div class="media-gallery-item" data-src="<?=$path;?><?=$rwact['file'];?>">
-            <div class="media-gallery-card">
-                <img src="<?=$path;?><?=$rwact['file'];?>" alt="Activities">
-            </div>
-        </div>
-        <?php } ?>
     </div>
+    <?php } ?>
 </div>
 </div>
 

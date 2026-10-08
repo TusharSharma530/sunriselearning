@@ -27,11 +27,30 @@ if(isset($_POST['deletedata'])){
  }
 
 
+// LOAD SUB CATEGORY ON CATEGORY SELECT
+if(isset($_POST['setsubcat'])){
+	$id = intval($_POST['catid'] ?? 0);
+	$output = "<option value=''>- Select Sub Category -</option>";
+	if($id){
+		$sql = mysqli_query($con, "SELECT * FROM `sub_cat` WHERE `cat_id` = $id ORDER BY `order` ASC, `id` ASC");
+		if(mysqli_num_rows($sql)){
+			while($rw = mysqli_fetch_array($sql)){
+				$output .= "<option value='{$rw['id']}'>".htmlspecialchars($rw['sc_name'], ENT_QUOTES)."</option>";
+			}
+		}
+	}
+	echo $output;
+	exit();
+}
+
+
 
 
 if(isset($_POST['addRecord'])){
 $sqlins = "";
 $i=0;
+$catid = intval($_POST['cat_id'] ?? 0);
+$subcatid = intval($_POST['subcat_id'] ?? 0);
 foreach ($_FILES['img']["name"] as $row=>$name){
     $gallery_images = $name;                                
     $images_content = explode(".", $gallery_images);
@@ -39,7 +58,7 @@ foreach ($_FILES['img']["name"] as $row=>$name){
     $uploadpath = "branch/assets/gallery_img/".$gallery_imagename;
     move_uploaded_file($_FILES["img"]["tmp_name"][$i], "../branch/assets/gallery_img/" . $gallery_imagename);
     $i++;
-    $sqlins = mysqli_query($con,"INSERT INTO `media` (`gal_id`, `file`, `month`, `year`) VALUES (1, '$uploadpath', '".date('n')."', '".date('Y')."')");
+    $sqlins = mysqli_query($con,"INSERT INTO `media` (`gal_id`, `cat_id`, `subcat_id`, `file`, `month`, `year`) VALUES (1, '$catid', '$subcatid', '$uploadpath', '".date('n')."', '".date('Y')."')");
 }  
 
 if($sqlins){
@@ -53,6 +72,27 @@ echo "<div class='col-md-12 padd0 text-center'><a href='addgalleryimages.php?id=
 
 	exit();
 } 
+
+
+// ALL CATEGORIES + SUB CATEGORIES FOR DROPDOWN
+$catnames = array();
+$subnames = array();
+$catlist = array();
+
+$sqlcats = mysqli_query($con, "SELECT * FROM `category` ORDER BY `order` ASC, `id` ASC");
+if(mysqli_num_rows($sqlcats)){
+	while($rwcat = mysqli_fetch_assoc($sqlcats)){
+		$catlist[] = $rwcat;
+		$catnames[$rwcat['id']] = $rwcat['c_name'];
+	}
+}
+
+$sqlsubs = mysqli_query($con, "SELECT * FROM `sub_cat` ORDER BY `order` ASC, `id` ASC");
+if(mysqli_num_rows($sqlsubs)){
+	while($rwsub = mysqli_fetch_assoc($sqlsubs)){
+		$subnames[$rwsub['id']] = $rwsub['sc_name'];
+	}
+}
 
 
 include 'include/header.php';
@@ -79,7 +119,25 @@ include 'include/sidebar.php';
 <div class="page-content">
 	<div class="msgbox"></div>
 	<form method="POST" id="submitForm" enctype="multipart/form-data">
-		<div class="row">
+	<div class="row">
+
+		<div class="mb-3 col-md-4">
+			<label class="form-label">Category</label>
+			<select name="cat_id" id="catselect" class="form-control">
+				<option value="">- Select Category -</option>
+<?php foreach($catlist as $rwcat){
+	echo "<option value='{$rwcat['id']}'>".htmlspecialchars($rwcat['c_name'], ENT_QUOTES)."</option>";
+}
+?>
+			</select>
+		</div>
+
+		<div class="mb-3 col-md-4">
+			<label class="form-label">Sub Category</label>
+			<select name="subcat_id" id="subcatselect" class="form-control" disabled>
+				<option value="">- Select Sub Category -</option>
+			</select>
+		</div>
 
 		<div class="mb-3 col-md-12">
 		  	<label for="formFile" class="form-label">Image</label>
@@ -111,6 +169,7 @@ include 'include/sidebar.php';
 				<tr>
 					<th width="5%">#</th>
 					<th>Image</th>
+					<th>Category</th>
 					<th width="10%" class="text-end">Action</th>
 				</tr>
 			</thead>
@@ -124,6 +183,16 @@ $id = $rwgallery['id'];
 				<tr id='remove<?php echo $id; ?>'>
 					<td><?php echo $serial; ?></td>
 					<td><img src="<?=$path.$rwgallery['file'];?>" style="width: 100px;"/></td>
+					<td><?php
+					$mediacat = '';
+					if(!empty($rwgallery['cat_id'])){
+						$mediacat = $catnames[$rwgallery['cat_id']] ?? '';
+						if(!empty($rwgallery['subcat_id']) && isset($subnames[$rwgallery['subcat_id']])){
+							$mediacat .= ' / '.$subnames[$rwgallery['subcat_id']];
+						}
+					}
+					echo ($mediacat !== '') ? $mediacat : '-';
+					?></td>
 					<td class="text-end">
 						<a href="javascript:" ide="<?=$id;?>" class='delbtn ri-delete-bin-line'></a>
 					</td>
@@ -138,7 +207,25 @@ $id = $rwgallery['id'];
 </div>
 </section>
 
-	
-<?php 
-	include "include/footer.php"; 
+<script>
+$(document).on("change", "#catselect", function(){
+	var $id = $(this).val();
+	var $subcat = $('#subcatselect');
+	$subcat.prop('disabled', true).html("<option value=''>- Select Sub Category -</option>");
+	if($id === ''){
+		return false;
+	}
+	$.ajax({
+		url : url,
+		type : "POST",
+		data : {setsubcat : 1, catid : $id},
+		success : function(data){
+			$subcat.html(data).prop('disabled', false);
+		}
+	});
+});
+</script>
+
+<?php
+	include "include/footer.php";
 ?>
