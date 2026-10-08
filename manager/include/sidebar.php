@@ -92,9 +92,9 @@
 <li class="submenu-item">
 <a href="addgalleryimages.php" class="submenu-link">Gallery</a>
 </li>
-<li class="submenu-item">
+<!-- <li class="submenu-item">
 <a href="addmedia.php" class="submenu-link">Media</a>
-</li>
+</li> -->
 <li class="submenu-item">
 <a href="syllabus.php" class="submenu-link">Syllabus</a>
 </li>
