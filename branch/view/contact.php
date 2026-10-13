@@ -11,6 +11,9 @@ $settings = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM settings LIMIT 
 				<h2>Get in Touch</h2>
 				<p>If you have query regarding admission, programs, therapies, or any other information, you can contact us on the following address. You can drop a mail or call us. We will be happy to assist you in best possible way.</p>
 			</div>
+			<?php if(!empty($_SESSION['contact_msg'])){ ?>
+			<div class="msgbox"><?=$_SESSION['contact_msg'];?></div>
+			<?php unset($_SESSION['contact_msg']); } ?>
 			<form method="POST" class="row contactform">
 				<div class="col-md-6">
 					<div class="fields">
@@ -33,11 +36,17 @@ $settings = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM settings LIMIT 
 					</div>
 				</div>
 				<div class="col-md-12">
+					<div class="fields">
+						<div class="g-recaptcha" data-sitekey="<?=RECAPTCHA_SITE_KEY;?>"></div>
+					</div>
+				</div>
+				<div class="col-md-12">
 					<div class="fields-btn">						
 						<input type="submit" name="contactfrm" value="Submit">
 					</div>
 				</div>
 			</form>
+			<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 		</div>
 	</div>
 	<div class="col-md-3">

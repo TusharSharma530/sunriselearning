@@ -18,25 +18,27 @@ use PHPMailer\PHPMailer\Exception;
 require 'PHPMailer/vendor/autoload.php';
 
 
-function SendEmailer($senderemail,$subject,$bodydata, $filePath=null){
+function SendEmailer($senderemail,$subject,$bodydata, $filePath=null, $replyto=null){
 
 $mail = new PHPMailer(true);
 try {
     //Server settings
     $mail->SMTPDebug = false;                      //Enable verbose debug output
-    // $mail->isSMTP();                               //Send using SMTP
-    $mail->Host       = 'mail.kgimeerut.com';                     //Set the SMTP server to send through
+    $mail->isSMTP();                               //Send using SMTP
+    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'noreply@kgimeerut.com';                     //SMTP username
-    $mail->Password   = '!Pb!CX&!+K?J';                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS
+    $mail->Username   = 'tusharsharma6868@gmail.com';                     //SMTP username
+    $mail->Password   = 'kouf rxzp oxxi rnte';                               //Gmail App Password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = 587;                                    //TCP port to connect to
 
     //Recipients
-    $mail->setFrom('noreply@kgimeerut.com', 'Krishna Institute of Management');
+    $mail->setFrom('tusharsharma6868@gmail.com', 'Sunrise Learning School');
     $mail->addAddress("$senderemail", '');     //Add a recipient
     // $mail->addAddress('ellen@example.com');               //Name is optional
-   // $mail->addReplyTo('info@example.com', 'Information');
+    if(!empty($replyto)){
+        $mail->addReplyTo($replyto);
+    }
    // $mail->addCC('cc@example.com');
     // $mail->addBCC('bcc@example.com');
 
@@ -55,9 +57,8 @@ try {
     $mail->AltBody = '';
 
     $mail->send();
-    // echo 'Message has been sent';
 } catch (Exception $e) {
-    // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    error_log("Mail Error: " . $mail->ErrorInfo);
 }
 
 }
